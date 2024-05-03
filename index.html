@@ -3,33 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Simple Website - Home</title>
+    <title>Simple Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #666;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+    <!-- Home Page -->
     <header>
-        <h1>Welcome to our Simple Website!</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
+        <h1>SiteWeb</h1>
     </header>
-    
-    <main>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="#blog">Blog</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+    <main id="home">
+        <h2>Welcome!</h2>
+        <p></p>
+        <p></p>
+    </main>
+    <footer>
+        <p>SiteWeb @2024</p>
+    </footer>
+
+    <!-- About Page -->
+    <main id="about" style="display:none;">
+        <header>
+            <h1>About Us</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
         <section>
-            <h2>Welcome!</h2>
-            <p></p>
+            <h2>About Us</h2>
+            <p>This website has currently been created by Ethan Ng'ang'a Wachira a current Strathmore University student.
+            Ethan has only been coding for close to a year.
+            </p>
         </section>
+        <footer>
+            <p>SiteWeb @2024</p>
+        </footer>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Simple Website</p>
-    </footer>
+    <!-- Services Page -->
+    <main id="services" style="display:none;">
+        <header>
+            <h1>Our Services</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <section>
+            <h2>Our Services</h2>
+            <p>Services are currently down.</p>
+        </section>
+        <footer>
+            <p>SiteWeb @ 2024</p>
+        </footer>
+    </main>
+
+    <!-- Gallery Page -->
+    <main id="gallery" style="display:none;">
+        <header>
+            <h1>Photo Gallery</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <section>
+            <h2>Photo Gallery</h2>
+            <p>Photos are currently unavailable.</p>
+        </section>
+        <footer>
+            <p>&copy; 2024 Simple Website</p>
+        </footer>
+    </main>
+
+    <!-- Contact Page -->
+    <main id="contact" style="display:none;">
+        <header>
+            <h1>Contact Us</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <section>
+            <h2>Contact Information</h2>
+            <p>Phone number: 0740492256.
+               Email: ethan.wachira@strathmore.edu
+            </p>
+        </section>
+        <footer>
+            <p>SiteWeb @2024</p>
+        </footer>
+    </main>
+
+    <!-- Blog Page -->
+    <main id="blog" style="display:none;">
+        <header>
+            <h1>Blog</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <section>
+            <h2>Latest Blog Posts</h2>
+            <p>Blog posts are currently unavailable at the moment.</p>
+        </section>
+        <footer>
+            <p>&copy; 2024 Simple Website</p>
+        </footer>
+    </main>
+
+    <!-- FAQ Page -->
+    <main id="faq" style="display:none;">
+        <header>
+            <h1>FAQ</h1>
+        </header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions here.</p>
+        </section>
+        <footer>
+            <p>SiteWeb @2024</p>
+        </footer>
+    </main>
+
+    <script>
+        // JavaScript to show/hide main sections based on URL hash
+        const showPage = () => {
+            const hash = window.location.hash.substr(1) || 'home';
+            document.querySelectorAll('main').forEach(main => {
+                main.style.display = main.id === hash ? 'block' : 'none';
+            });
+        };
+
+        window.addEventListener('DOMContentLoaded', showPage);
+        window.addEventListener('hashchange', showPage);
+    </script>
 </body>
 </html>
