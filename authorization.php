@@ -1,65 +1,66 @@
-<?php
-$pageTitle = "Digital Diary - Sign Up / Sign In";
-include 'header.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Diary - Sign Up / Sign In</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <?php 
+    $pageTitle = "Digital Diary - Sign Up / Sign In";
+    include 'header.php'; 
+    ?>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    <div class="container mt-4">
+        <h2>Sign Up / Sign In</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="signup-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="signup" aria-selected="true">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="false">Sign In</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- Sign Up Tab -->
+            <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                <form method="post" action="signup_process.php">
+                    <div class="form-group">
+                        <label for="signup_username">Username</label>
+                        <input type="text" class="form-control" id="signup_username" name="signup_username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup_password">Password</label>
+                        <input type="password" class="form-control" id="signup_password" name="signup_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
 
-    echo "<div class='container mt-4'>";
-    echo "<h2>Sign Up / Sign In</h2>";
-    echo "<p>Thank you for signing up, $username!</p>";
-    echo "</div>";
-} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signin'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    echo "<div class='container mt-4'>";
-    echo "<h2>Sign Up / Sign In</h2>";
-    echo "<p>Welcome back, $username!</p>";
-    echo "</div>";
-} else {
-    
-?>
-<div class="container mt-4">
-    <h2>Sign Up / Sign In</h2>
-
-    <!-- Sign Up Form -->
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <h3>Sign Up</h3>
-        <div class="form-group">
-            <label for="username_signup">Username</label>
-            <input type="text" class="form-control" id="username_signup" name="username" required>
+            <!-- Sign In Tab -->
+            <div class="tab-pane fade" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                <form method="post" action="signin_process.php">
+                    <div class="form-group">
+                        <label for="signin_username">Username</label>
+                        <input type="text" class="form-control" id="signin_username" name="signin_username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin_password">Password</label>
+                        <input type="password" class="form-control" id="signin_password" name="signin_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password_signup">Password</label>
-            <input type="password" class="form-control" id="password_signup" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary" name="signup">Sign Up</button>
-    </form>
+    </div>
 
-    <hr>
+    <?php include 'footer.php'; ?>
 
-    <!-- Sign In Form -->
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <h3>Sign In</h3>
-        <div class="form-group">
-            <label for="username_signin">Username</label>
-            <input type="text" class="form-control" id="username_signin" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password_signin">Password</label>
-            <input type="password" class="form-control" id="password_signin" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-success" name="signin">Sign In</button>
-    </form>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-<?php
-}
-
-include 'footer.php';
-?>
 
