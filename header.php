@@ -30,16 +30,16 @@
                         <a class="nav-link" href="blog.php">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About Us</a>
+                        <a class="nav-link" href="aboutus.php">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="contactus.php">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="shop.php">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="signup.php">Sign Up/Sign In</a>
+                        <a class="nav-link" href="authorization.php">Sign Up/Sign In</a>
                     </li>
                 </ul>
             </div>
