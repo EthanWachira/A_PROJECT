@@ -7,10 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <?php 
-    $pageTitle = "Digital Diary - Sign Up / Sign In";
-    include 'header.php'; 
-    ?>
+    <?php include 'header.php'; ?>
 
     <div class="container mt-4">
         <h2>Sign Up / Sign In</h2>
@@ -62,5 +59,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
