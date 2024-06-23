@@ -25,7 +25,7 @@
     <div class="container mt-4">
         <div class="jumbotron">
             <h1 class="display-4">Welcome to Digital Diary!</h1>
-            <p class="lead">Record your thoughts and experiences with our easy-to-use digital journal.</p>
+            <p class="lead">Record your thoughts and experiences with our easy-to-use digital diary.</p>
             <hr class="my-4">
             <p>Start documenting today!</p>
             <a class="btn btn-primary btn-lg" href="journal.php" role="button">Go to Diary</a>
