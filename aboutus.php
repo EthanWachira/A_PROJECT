@@ -47,6 +47,9 @@
         <p>Ethan is currently pursuing a degree in Bachelors of Business and Information Technology at Strathmore University. He aims at enhancing the website even more and making sure it reaches the right audience.</p>
     </div>
 
+
+
+    
     <footer class="mt-4">
     <p>&copy; <?php echo date('Y'); ?> Digital Diary. All rights reserved.</p>
 </footer>
