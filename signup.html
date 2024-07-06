@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Innovators - Home</title>
+    <title>Sign Up</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
@@ -30,21 +31,22 @@
     </header>
 
     <main class="container mt-4">
-        <div class="hero">
-            <h1>Welcome to Tech Innovators</h1>
-            <p>Your trusted partner in technology solutions.</p>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Our Mission</h2>
-                <p>To provide innovative technology solutions that enhance business efficiency and drive growth.</p>
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            <div class="col-md-6">
-                <h2>Our Vision</h2>
-                <p>To be the leading technology solutions provider known for excellence, innovation, and customer satisfaction.</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
     </main>
 
     <footer>
