@@ -1,16 +1,12 @@
 <?php
+$servername = "127.0.0.1 via TCP/IP";
+$username = "root@localhost"; 
+$password = "WORDPASS12345!"; 
+$dbname = "techinnovatorsdb";
 
-$host = 'localhost'; 
-$dbname = 'techinnovatorsdb';
-$username = 'Ethan';
-$password = 'WORDPASS12345!';
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error: Could not connect to the database. " . $e->getMessage());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-
+?>
