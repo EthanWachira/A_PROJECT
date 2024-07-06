@@ -1,6 +1,6 @@
 <?php
-$servername = "127.0.0.1 via TCP/IP";
-$username = "root@localhost"; 
+$servername = "localhost";
+$username = "Ethan"; 
 $password = "WORDPASS12345!"; 
 $dbname = "techinnovatorsdb";
 

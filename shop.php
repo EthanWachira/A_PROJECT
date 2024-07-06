@@ -1,8 +1,6 @@
 <?php
 $pageTitle = "Shop";
 include 'header.php';
-require_once 'db.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -19,32 +17,50 @@ require_once 'db.php';
 <main class="container mt-4">
     <h2>Shop</h2>
     <div class="row">
-
-        <?php
-        $sql = "SELECT * FROM products";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                ?>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="<?php echo htmlspecialchars($row['image_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                            <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['product_id']); ?>">Add to Cart</button>
-                        </div>
-                    </div>
+        <!-- Product 1 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="laptop1.jpg" class="card-img-top" alt="TechInvo Laptop V1">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Laptop V1</h5>
+                    <p class="card-text">At $1200, TechInvo Laptop V1 offers high performance and sleek design, perfect for work and play.</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="1">Add to Cart</button>
                 </div>
-                <?php
-            }
-        } else {
-            echo "0 results";
-        }
-        $conn->close();
-        ?>
-
+            </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="laptop2.jpg" class="card-img-top" alt="TechInvo Laptop V2">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Laptop V2</h5>
+                    <p class="card-text">TechInvo Laptop V2, priced at $1400, combines cutting-edge features with stunning design for enhanced productivity.</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="2">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="charger1.jpg" class="card-img-top" alt="TechInvo Charger V1">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Charger V1</h5>
+                    <p class="card-text">TechInvo Charger V1 is available for $50, ensuring fast and reliable charging for your devices.</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="charger2.jpg" class="card-img-top" alt="TechInvo Charger V2">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Charger V2</h5>
+                    <p class="card-text">TechInvo Charger V2 is priced at $60, providing efficient charging solutions with a modern design.</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="4">Add to Cart</button>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -56,3 +72,4 @@ require_once 'db.php';
 
 </body>
 </html>
+
