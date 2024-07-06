@@ -1,12 +1,4 @@
 <?php
-include 'db.php';
-
-if ($conn) {
-    echo "<p>Database connection established.</p>";
-} else {
-    echo "<p>Database connection failed.</p>";
-}
-
 $pageTitle = "Shop";
 include 'header.php';
 ?>
@@ -16,57 +8,67 @@ include 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title><?php echo $pageTitle; ?></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <?php require_once 'header.php'; ?>
 
-    <main class="container mt-4">
-        <h2>Shop</h2>
-        <div class="row">
-            <?php
-            if ($conn) {
-                $sql = "SELECT * FROM products";
-                $result = $conn->query($sql);
-
-                if ($result === false) {
-                    echo "<p>Error: " . $conn->error . "</p>";
-                } elseif ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <img src="<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                                    <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['id']); ?>">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                } else {
-                    echo "<p>No products found</p>";
-                }
-            } else {
-                echo "<p>Database connection failed.</p>";
-            }
-
-            if ($conn) {
-                $conn->close();
-            }
-            ?>
+<main class="container mt-4">
+    <h2>Shop</h2>
+    <div class="row">
+        <!-- Example product 1 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="laptop1.jpg" class="card-img-top" alt="TechInvo Laptop V1">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Laptop V1</h5>
+                    <p class="card-text">$1200</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="1">Add to Cart</button>
+                </div>
+            </div>
         </div>
-    </main>
+        <!-- Example product 2 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="laptop2.jpg" class="card-img-top" alt="TechInvo Laptop V2">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Laptop V2</h5>
+                    <p class="card-text">$1400</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="2">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Example product 3 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="charger1.jpg" class="card-img-top" alt="TechInvo Charger V1">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Charger V1</h5>
+                    <p class="card-text">$50</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Example product 4 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="charger2.jpg" class="card-img-top" alt="TechInvo Charger V2">
+                <div class="card-body">
+                    <h5 class="card-title">TechInvo Charger V2</h5>
+                    <p class="card-text">$60</p>
+                    <button class="btn btn-primary add-to-cart-btn" data-product-id="4">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-    <?php require_once 'footer.php'; ?>
+<?php include 'footer.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
