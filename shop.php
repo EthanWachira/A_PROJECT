@@ -21,28 +21,32 @@ require_once 'header.php';
         <h2>Shop</h2>
         <div class="row">
             <?php
-            $sql = "SELECT * FROM products";
-            $result = $conn->query($sql);
+            if ($conn) {
+                $sql = "SELECT * FROM products";
+                $result = $conn->query($sql);
 
-            if ($result === false) {
-                echo "<p>Error: " . $conn->error . "</p>";
-            } elseif ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-            ?>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                            <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['id']); ?>">Add to Cart</button>
+                if ($result === false) {
+                    echo "<p>Error: " . $conn->error . "</p>";
+                } elseif ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img src="<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
+                                    <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['id']); ?>">Add to Cart</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <?php
+                        <?php
+                    }
+                } else {
+                    echo "<p>No products found</p>";
                 }
             } else {
-                echo "<p>No products found</p>";
+                echo "<p>Database connection failed.</p>";
             }
 
             $conn->close();
@@ -58,3 +62,4 @@ require_once 'header.php';
 
 </body>
 </html>
+
