@@ -1,8 +1,14 @@
 <?php
-require_once 'db.php';
+include 'db.php';
+
+if ($conn) {
+    echo "<p>Database connection established.</p>";
+} else {
+    echo "<p>Database connection failed.</p>";
+}
 
 $pageTitle = "Shop";
-require_once 'header.php';
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +55,9 @@ require_once 'header.php';
                 echo "<p>Database connection failed.</p>";
             }
 
-            $conn->close();
+            if ($conn) {
+                $conn->close();
+            }
             ?>
         </div>
     </main>
@@ -62,4 +70,3 @@ require_once 'header.php';
 
 </body>
 </html>
-
