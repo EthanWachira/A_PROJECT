@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>Our Blog</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <style>
@@ -23,11 +23,11 @@
             text-align: center;
             padding: 10px 0;
         }
-        /* Adjusting card height for consistency */
+        
         .card {
             height: 100%;
         }
-        /* Increasing font size slightly for better readability */
+
         .card-title, .card-text {
             font-size: 1.2em;
         }
@@ -36,24 +36,7 @@
 <body>
     <div class="wrapper">
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Tech Innovators</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <?php require_once 'header.php'; ?>
         </header>
 
         <main class="container mt-4">
@@ -79,8 +62,8 @@
             </div>
         </main>
 
-        <footer class="mt-auto">
-            <p>&copy; 2024 Tech Innovators. All rights reserved.</p>
+        <footer>
+            <?php require_once 'footer.php'; ?>
         </footer>
     </div>
 

@@ -11,7 +11,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-size: 18px; 
+            font-size: 18px;
         }
         .wrapper {
             display: flex;
@@ -40,24 +40,7 @@
 <body>
     <div class="wrapper">
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Tech Innovators</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <?php require_once 'header.php'; ?>
         </header>
 
         <main class="container mt-4 main-content">
@@ -78,7 +61,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2024 Tech Innovators. All rights reserved.</p>
+            <?php require_once 'footer.php'; ?>
         </footer>
     </div>
 
@@ -87,4 +70,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

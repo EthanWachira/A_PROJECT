@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Blog</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .card {
+            height: 100%;
+        }
+
+        .card-title, .card-text {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <?php require_once 'header.php'; ?>
+        </header>
+
+        <main class="container mt-4">
+            <h2>Our Blog</h2>
+            <div class="card-deck">
+                <!-- Article 1: Artificial Intelligence in Healthcare -->
+                <div class="card">
+                    <img src="blog1.jpeg" class="card-img-top" alt="Artificial Intelligence in Healthcare">
+                    <div class="card-body">
+                        <h5 class="card-title">Artificial Intelligence in Healthcare</h5>
+                        <p class="card-text">Artificial Intelligence (AI) is revolutionizing healthcare by improving diagnosis accuracy, streamlining administrative tasks, and personalizing patient care. Discover how AI technologies are reshaping the future of healthcare delivery.</p>
+                    </div>
+                </div>
+
+                <!-- Article 2: The Rise of Quantum Computing -->
+                <div class="card">
+                    <img src="blog2.jpg" class="card-img-top" alt="The Rise of Quantum Computing">
+                    <div class="card-body">
+                        <h5 class="card-title">The Rise of Quantum Computing</h5>
+                        <p class="card-text">Quantum computing promises unprecedented computational power, potentially solving complex problems that are currently intractable for classical computers. Explore the advancements, challenges, and future possibilities of quantum computing technology.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <?php require_once 'footer.php'; ?>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
