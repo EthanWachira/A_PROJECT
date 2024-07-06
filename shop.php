@@ -13,50 +13,33 @@
     <main class="container mt-4">
         <h2>Shop</h2>
         <div class="row">
-            <!-- Laptop Product 1 -->
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="laptop1.jpg" class="card-img-top" alt="laptop1">
-                    <div class="card-body">
-                        <h5 class="card-title">TechInvo Laptop V1</h5>
-                        <p class="card-text">$1200</p>
-                        <button class="btn btn-primary add-to-cart-btn" data-product-id="1">Add to Cart</button>
+            <?php
+            require_once 'db.php';
+
+            $sql = "SELECT * FROM products";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+            ?>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                            <p class="card-text">$<?php echo $row['price']; ?></p>
+                            <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo $row['id']; ?>">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Laptop Product 2 -->
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="laptop2.jpg" class="card-img-top" alt="laptop2">
-                    <div class="card-body">
-                        <h5 class="card-title">TechInvo Laptop V2</h5>
-                        <p class="card-text">$1400</p>
-                        <button class="btn btn-primary add-to-cart-btn" data-product-id="2">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Charger Product 1 -->
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="charger1.jpg" class="card-img-top" alt="TechInvo Charger 1">
-                    <div class="card-body">
-                        <h5 class="card-title">TechInvo Charger V1</h5>
-                        <p class="card-text">$50</p>
-                        <button class="btn btn-primary add-to-cart-btn" data-product-id="3">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Charger Product 2 -->
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="charger2.jpg" class="card-img-top" alt="TechInvo Charger 2">
-                    <div class="card-body">
-                        <h5 class="card-title">TechInvo Charger V2</h5>
-                        <p class="card-text">$60</p>
-                        <button class="btn btn-primary add-to-cart-btn" data-product-id="4">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+            <?php
+                }
+            } else {
+                echo "No products found";
+            }
+
+            $conn->close();
+            ?>
         </div>
     </main>
 
@@ -68,4 +51,3 @@
 
 </body>
 </html>
-
