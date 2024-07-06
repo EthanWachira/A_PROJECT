@@ -6,69 +6,91 @@
     <title>Our Services</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .card {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Tech Innovators</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Tech Innovators</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-    <main class="container mt-4">
-        <h2>Our Services</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="service1.jpg" class="card-img-top" alt="Service 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Web Development</h5>
-                        <p class="card-text">We offer state-of-the-art web development services to build dynamic and responsive websites.</p>
+        <main class="container mt-4">
+            <h2>Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="web,jpeg.jpeg" class="card-img-top" alt="Service 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Web Development</h5>
+                            <p class="card-text">We offer state-of-the-art web development services to build dynamic and responsive websites.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="app.jpeg" class="card-img-top" alt="Service 2">
+                        <div class="card-body">
+                            <h5 class="card-title">App Development</h5>
+                            <p class="card-text">Our team excels in creating user-friendly mobile applications for both Android and iOS platforms.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="seo.png" class="card-img-top" alt="Service 3">
+                        <div class="card-body">
+                            <h5 class="card-title">SEO Optimization</h5>
+                            <p class="card-text">Enhance your online presence and boost your search engine rankings with our expert SEO services.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="service2.jpg" class="card-img-top" alt="Service 2">
-                    <div class="card-body">
-                        <h5 class="card-title">App Development</h5>
-                        <p class="card-text">Our team excels in creating user-friendly mobile applications for both Android and iOS platforms.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="service3.jpg" class="card-img-top" alt="Service 3">
-                    <div class="card-body">
-                        <h5 class="card-title">SEO Optimization</h5>
-                        <p class="card-text">Enhance your online presence and boost your search engine rankings with our expert SEO services.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
 
-    <footer>
-        <p>&copy; 2024 Tech Innovators. All rights reserved.</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Tech Innovators. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

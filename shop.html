@@ -39,10 +39,7 @@
                     <div class="card-body">
                         <h5 class="card-title">TechInvo Laptop V1</h5>
                         <p class="card-text">$1200</p>
-                        <form action="add_to_cart.php" method="post">
-                            <input type="hidden" name="product_id" value="1">
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
+                        <button class="btn btn-primary add-to-cart-btn" data-product-id="1">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -53,10 +50,7 @@
                     <div class="card-body">
                         <h5 class="card-title">TechInvo Laptop V2</h5>
                         <p class="card-text">$1400</p>
-                        <form action="add_to_cart.php" method="post">
-                            <input type="hidden" name="product_id" value="2">
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
+                        <button class="btn btn-primary add-to-cart-btn" data-product-id="2">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -67,10 +61,7 @@
                     <div class="card-body">
                         <h5 class="card-title">TechInvo Charger V1</h5>
                         <p class="card-text">$50</p>
-                        <form action="add_to_cart.php" method="post">
-                            <input type="hidden" name="product_id" value="3">
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
+                        <button class="btn btn-primary add-to-cart-btn" data-product-id="3">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -81,22 +72,28 @@
                     <div class="card-body">
                         <h5 class="card-title">TechInvo Charger V2</h5>
                         <p class="card-text">$60</p>
-                        <form action="add_to_cart.php" method="post">
-                            <input type="hidden" name="product_id" value="4">
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
+                        <button class="btn btn-primary add-to-cart-btn" data-product-id="4">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
+    <footer class="mt-4">
         <p>&copy; 2024 Tech Innovators. All rights reserved.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.add-to-cart-btn').click(function() {
+                var productId = $(this).data('product-id');
+                alert('Added product with ID ' + productId + ' to cart.');
+            });
+        });
+    </script>
 </body>
 </html>
