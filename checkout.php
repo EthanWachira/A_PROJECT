@@ -18,16 +18,15 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                         <h5 class="card-title">Your Cart</h5>
                         <ul class="list-group">
                             <?php
-                            foreach ($_SESSION['cart'] as $index => $quantity) {
-                                // Ensure $index exists in $product_ids to prevent undefined index errors
-                                if (isset($product_ids[$index])) {
-                                    $product_id = $product_ids[$index];
-                                    $sql = "SELECT * FROM products WHERE product_id = ?";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->bind_param("i", $product_id);
-                                    $stmt->execute();
-                                    $result = $stmt->get_result();
-                                    $product = $result->fetch_assoc();
+                            foreach ($_SESSION['cart'] as $product_id => $quantity) {
+                                $sql = "SELECT * FROM products WHERE product_id = ?";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("i", $product_id);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $product = $result->fetch_assoc();
+
+                                if ($product) {
                                     ?>
                                     <li class="list-group-item">
                                         <span><?php echo htmlspecialchars($product['product_name']); ?></span>
@@ -65,18 +64,15 @@ include 'footer.php';
 function calculateTotal() {
     global $conn;
     $total = 0;
-    foreach ($_SESSION['cart'] as $index => $quantity) {
-        if (isset($product_ids[$index])) {
-            $product_id = $product_ids[$index];
-            $sql = "SELECT price FROM products WHERE product_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $product_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $product = $result->fetch_assoc();
-            if ($product) {
-                $total += $product['price'] * $quantity;
-            }
+    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+        $sql = "SELECT price FROM products WHERE product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+        if ($product) {
+            $total += $product['price'] * $quantity;
         }
     }
     return $total;
@@ -84,4 +80,3 @@ function calculateTotal() {
 
 $conn->close();
 ?>
-
