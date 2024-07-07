@@ -21,34 +21,25 @@ include 'header.php';
     <div class="row" id="product-list">
         <?php
         $sql = "SELECT * FROM products";
-        $stmt = $conn->prepare($sql);
+        $result = $conn->query($sql);
 
-        if ($stmt) {
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <img src="<?php echo htmlspecialchars($row['image_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['product_name']); ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($row['product_name']); ?></h5>
-                                <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['product_id']); ?>">Add to Cart</button>
-                            </div>
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="<?php echo htmlspecialchars($row['image_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['product_name']); ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($row['product_name']); ?></h5>
+                            <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
+                            <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['product_id']); ?>">Add to Cart</button>
                         </div>
                     </div>
-                    <?php
-                }
-            } else {
-                echo "<p>No products found</p>";
+                </div>
+                <?php
             }
-
-            $stmt->close();
         } else {
-            echo "<p>Error retrieving products.</p>";
+            echo "<p>No products found</p>";
         }
         ?>
     </div>
@@ -61,30 +52,9 @@ include 'header.php';
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="shop.js"></script> 
 
-<script>
-$(document).ready(function() {
-    $('.add-to-cart-btn').click(function() {
-        var productId = $(this).data('product-id');
-        
-        $.ajax({
-            type: 'POST',
-            url: 'addtocart.php',
-            data: { product_id: productId },
-            success: function(response) {
-                alert(response); 
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText); 
-            }
-        });
-    });
-});
-</script>
-
 </body>
 </html>
 
 <?php
-$conn->close(); 
+$conn->close();
 ?>
-

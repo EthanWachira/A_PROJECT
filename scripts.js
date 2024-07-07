@@ -1,38 +1,20 @@
-function validateEmail(email) {
-    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return re.test(String(email).toLowerCase());
-}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-function validateDateRange(startDate, endDate) {
-    return new Date(startDate) <= new Date(endDate);
-}
+jQuery(document).ready(function($) {
+    
+    $('.add-to-cart-btn').click(function() {
+        var productId = $(this).data('product-id');
 
-function validateName(name) {
-    const re = /^[a-zA-Z\s]+$/;
-    return re.test(String(name));
-}
-
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-
-    if (!validateEmail(email)) {
-        alert('Please enter a valid email address.');
-        event.preventDefault();
-    }
-
-    if (!validateName(name)) {
-        alert('Please enter a valid name.');
-        event.preventDefault();
-    }
+        $.ajax({
+            type: 'POST',
+            url: 'addtocart.php',
+            data: { product_id: productId }, 
+            success: function(response) {
+                alert(response); 
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText); 
+            }
+        });
+    });
 });
-
-document.getElementById('signinForm').addEventListener('submit', function(event) {
-    const email = document.getElementById('email').value;
-
-    if (!validateEmail(email)) {
-        alert('Please enter a valid email address.');
-        event.preventDefault();
-    }
-})
-;
