@@ -5,6 +5,13 @@ session_start();
 $pageTitle = "Checkout";
 include 'header.php';
 
+$product_ids = [
+    0 => 1001, 
+    1 => 1002, 
+    2 => 1003, 
+    3 => 1004  
+];
+
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     echo "<div class='container mt-4'><h2>Your Cart is Empty</h2></div>";
 } else {
@@ -18,15 +25,15 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                         <h5 class="card-title">Your Cart</h5>
                         <ul class="list-group">
                             <?php
-                            $total = 0;
-                            foreach ($_SESSION['cart'] as $product_id => $quantity) {
-                                $sql = "SELECT * FROM products WHERE product_id = ?";
-                                $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("i", $product_id);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-
-                                if ($result->num_rows > 0) {
+                            foreach ($_SESSION['cart'] as $index => $quantity) {
+                                // Ensure $index exists in $product_ids to prevent undefined index errors
+                                if (isset($product_ids[$index])) {
+                                    $product_id = $product_ids[$index];
+                                    $sql = "SELECT * FROM products WHERE product_id = ?";
+                                    $stmt = $conn->prepare($sql);
+                                    $stmt->bind_param("i", $product_id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
                                     $product = $result->fetch_assoc();
                                     ?>
                                     <li class="list-group-item">
@@ -35,9 +42,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                         <span class="float-right"><?php echo $quantity; ?> x </span>
                                     </li>
                                     <?php
-                                    $total += $product['price'] * $quantity;
-                                } else {
-                                    echo "<li class='list-group-item'>Product not found for ID: $product_id</li>";
                                 }
                             }
                             ?>
@@ -50,9 +54,10 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     <div class="card-body">
                         <h5 class="card-title">Order Summary</h5>
                         <p>Total Items: <?php echo count($_SESSION['cart']); ?></p>
-                        <p>Total Amount: $<?php echo $total; ?></p>
+                        <p>Total Amount: $<?php echo calculateTotal(); ?></p>
                         <form action="placeorder.php" method="POST">
                             <button type="submit" class="btn btn-primary">Place Order</button>
+                            <a href="clearcart.php" class="btn btn-danger">Clear Cart</a>
                         </form>
                     </div>
                 </div>
@@ -67,15 +72,24 @@ include 'footer.php';
 function calculateTotal() {
     global $conn;
     $total = 0;
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        $sql = "SELECT price FROM products WHERE product_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $product = $result->fetch_assoc();
-        $total += $product['price'] * $quantity;
+    foreach ($_SESSION['cart'] as $index => $quantity) {
+        // Ensure $index exists in $product_ids to prevent undefined index errors
+        if (isset($product_ids[$index])) {
+            $product_id = $product_ids[$index];
+            $sql = "SELECT price FROM products WHERE product_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $product_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product = $result->fetch_assoc();
+            if ($product) {
+                $total += $product['price'] * $quantity;
+            }
+        }
     }
     return $total;
 }
+
+$conn->close();
 ?>
+
