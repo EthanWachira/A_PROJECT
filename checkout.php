@@ -5,13 +5,6 @@ session_start();
 $pageTitle = "Checkout";
 include 'header.php';
 
-$product_ids = [
-    0 => 1001, 
-    1 => 1002, 
-    2 => 1003, 
-    3 => 1004  
-];
-
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     echo "<div class='container mt-4'><h2>Your Cart is Empty</h2></div>";
 } else {
@@ -73,7 +66,6 @@ function calculateTotal() {
     global $conn;
     $total = 0;
     foreach ($_SESSION['cart'] as $index => $quantity) {
-        // Ensure $index exists in $product_ids to prevent undefined index errors
         if (isset($product_ids[$index])) {
             $product_id = $product_ids[$index];
             $sql = "SELECT price FROM products WHERE product_id = ?";
