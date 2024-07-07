@@ -21,32 +21,39 @@ require_once 'header.php';
         </thead>
         <tbody>
             <?php
-            // Retrieve and display order details from session cart
-            if (isset($_SESSION['cart'])) {
+            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                $total = 0;
                 foreach ($_SESSION['cart'] as $product_id => $quantity) {
                     $sql = "SELECT product_name, price FROM products WHERE product_id = ?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("i", $product_id);
                     $stmt->execute();
                     $result = $stmt->get_result();
-                    $product = $result->fetch_assoc();
-                    $total = $product['price'] * $quantity;
-                    ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($product['product_name']); ?></td>
-                        <td>$<?php echo htmlspecialchars($product['price']); ?></td>
-                        <td><?php echo htmlspecialchars($quantity); ?></td>
-                        <td>$<?php echo htmlspecialchars($total); ?></td>
-                    </tr>
-                    <?php
+
+                    if ($result->num_rows > 0) {
+                        $product = $result->fetch_assoc();
+                        $total += $product['price'] * $quantity;
+                        ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($product['product_name']); ?></td>
+                            <td>$<?php echo htmlspecialchars($product['price']); ?></td>
+                            <td><?php echo htmlspecialchars($quantity); ?></td>
+                            <td>$<?php echo htmlspecialchars($product['price'] * $quantity); ?></td>
+                        </tr>
+                        <?php
+                    } else {
+                        echo "<tr><td colspan='4'>Product not found for ID: $product_id</td></tr>";
+                    }
                 }
+            } else {
+                echo "<tr><td colspan='4'>No products in cart</td></tr>";
             }
             ?>
         </tbody>
     </table>
 
     <div class="alert alert-info">
-        Total Amount: $<?php echo calculateTotal(); ?>
+        Total Amount: $<?php echo htmlspecialchars($total); ?>
     </div>
 </main>
 
@@ -55,19 +62,4 @@ require_once 'header.php';
 <?php
 unset($_SESSION['cart']);
 $conn->close();
-
-function calculateTotal() {
-    global $conn;
-    $total = 0;
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        $sql = "SELECT price FROM products WHERE product_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $product = $result->fetch_assoc();
-        $total += $product['price'] * $quantity;
-    }
-    return $total;
-}
 ?>
