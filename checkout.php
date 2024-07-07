@@ -18,6 +18,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                         <h5 class="card-title">Your Cart</h5>
                         <ul class="list-group">
                             <?php
+                            $total = 0;
                             foreach ($_SESSION['cart'] as $product_id => $quantity) {
                                 $sql = "SELECT * FROM products WHERE product_id = ?";
                                 $stmt = $conn->prepare($sql);
@@ -34,6 +35,8 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                         <span class="float-right"><?php echo $quantity; ?> x </span>
                                     </li>
                                     <?php
+                                    $subtotal = $product['price'] * $quantity;
+                                    $total += $subtotal;
                                 }
                             }
                             ?>
@@ -46,7 +49,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     <div class="card-body">
                         <h5 class="card-title">Order Summary</h5>
                         <p>Total Items: <?php echo count($_SESSION['cart']); ?></p>
-                        <p>Total Amount: $<?php echo calculateTotal(); ?></p>
+                        <p>Total Amount: $<?php echo $total; ?></p>
                         <form action="placeorder.php" method="POST">
                             <button type="submit" class="btn btn-primary">Place Order</button>
                             <a href="clearcart.php" class="btn btn-danger">Clear Cart</a>
@@ -60,23 +63,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 }
 
 include 'footer.php';
-
-function calculateTotal() {
-    global $conn;
-    $total = 0;
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        $sql = "SELECT price FROM products WHERE product_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $product = $result->fetch_assoc();
-        if ($product) {
-            $total += $product['price'] * $quantity;
-        }
-    }
-    return $total;
-}
 
 $conn->close();
 ?>
