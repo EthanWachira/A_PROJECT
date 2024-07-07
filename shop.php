@@ -3,6 +3,21 @@ require_once 'db.php';
 
 $pageTitle = "Shop";
 include 'header.php';
+
+session_start();
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+    $productId = $_POST['product_id'];
+
+    $_SESSION['cart'][] = $productId;
+
+    header('Location: checkout.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +47,10 @@ include 'header.php';
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($row['product_name']); ?></h5>
                             <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                            <button class="btn btn-primary add-to-cart-btn" data-product-id="<?php echo htmlspecialchars($row['product_id']); ?>">Add to Cart</button>
+                            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($row['product_id']); ?>">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -50,7 +68,6 @@ include 'header.php';
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="shop.js"></script> 
 
 </body>
 </html>
