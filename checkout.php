@@ -18,24 +18,24 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                         <h5 class="card-title">Your Cart</h5>
                         <ul class="list-group">
                             <?php
-                            $totalAmount = 0;
+                            $total = 0;
                             foreach ($_SESSION['cart'] as $product_id => $quantity) {
                                 $sql = "SELECT * FROM products WHERE product_id = ?";
                                 $stmt = $conn->prepare($sql);
                                 $stmt->bind_param("i", $product_id);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
+
                                 if ($result->num_rows > 0) {
                                     $product = $result->fetch_assoc();
-                                    $totalPrice = $product['price'] * $quantity;
-                                    $totalAmount += $totalPrice;
                                     ?>
                                     <li class="list-group-item">
                                         <span><?php echo htmlspecialchars($product['product_name']); ?></span>
-                                        <span class="float-right">$<?php echo number_format($product['price'], 2); ?></span>
+                                        <span class="float-right">$<?php echo htmlspecialchars($product['price']); ?></span>
                                         <span class="float-right"><?php echo $quantity; ?> x </span>
                                     </li>
                                     <?php
+                                    $total += $product['price'] * $quantity;
                                 } else {
                                     echo "<li class='list-group-item'>Product not found for ID: $product_id</li>";
                                 }
@@ -50,7 +50,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     <div class="card-body">
                         <h5 class="card-title">Order Summary</h5>
                         <p>Total Items: <?php echo count($_SESSION['cart']); ?></p>
-                        <p>Total Amount: $<?php echo number_format($totalAmount, 2); ?></p>
+                        <p>Total Amount: $<?php echo $total; ?></p>
                         <form action="placeorder.php" method="POST">
                             <button type="submit" class="btn btn-primary">Place Order</button>
                         </form>
@@ -64,5 +64,18 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 
 include 'footer.php';
 
-$conn->close();
+function calculateTotal() {
+    global $conn;
+    $total = 0;
+    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+        $sql = "SELECT price FROM products WHERE product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+        $total += $product['price'] * $quantity;
+    }
+    return $total;
+}
 ?>
