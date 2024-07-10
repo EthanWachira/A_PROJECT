@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'db.php'; 
 
 session_start();
 
@@ -12,6 +12,7 @@ $total = 0;
 $orderDetails = '';
 
 foreach ($_SESSION['cart'] as $productId) {
+
     $sql = "SELECT * FROM products WHERE product_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $productId);
@@ -22,17 +23,20 @@ foreach ($_SESSION['cart'] as $productId) {
         $row = $result->fetch_assoc();
         $productName = htmlspecialchars($row['product_name']);
         $price = htmlspecialchars($row['price']);
-
         $quantity = array_count_values($_SESSION['cart'])[$productId];
 
         $subtotal = $price * $quantity;
         $total += $subtotal;
 
-        $orderDetails .= "{$productName} {$quantity} x \${$price} = \${$subtotal}<br>";
+        $orderDetails .= "<div><strong>{$productName}</strong><br>";
+        $orderDetails .= "Price: \${$price}<br>";
+        $orderDetails .= "Quantity: {$quantity}<br>";
+        $orderDetails .= "Subtotal: \${$subtotal}</div><hr>";
     }
+
+    $stmt->close();
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
@@ -51,7 +55,6 @@ $conn->close();
     <h2>Order Details</h2>
     <div>
         <?php echo $orderDetails; ?>
-        <hr>
         <strong>Total: $<?php echo number_format($total, 2); ?></strong>
     </div>
 </main>
