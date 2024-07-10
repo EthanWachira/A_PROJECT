@@ -12,7 +12,6 @@ $total = 0;
 $orderDetails = '';
 
 foreach ($_SESSION['cart'] as $productId) {
-
     $sql = "SELECT * FROM products WHERE product_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $productId);
@@ -23,6 +22,7 @@ foreach ($_SESSION['cart'] as $productId) {
         $row = $result->fetch_assoc();
         $productName = htmlspecialchars($row['product_name']);
         $price = htmlspecialchars($row['price']);
+
         $quantity = array_count_values($_SESSION['cart'])[$productId];
 
         $subtotal = $price * $quantity;
@@ -65,3 +65,4 @@ $conn->close();
 
 </body>
 </html>
+
