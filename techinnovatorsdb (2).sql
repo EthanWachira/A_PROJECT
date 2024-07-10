@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2024 at 11:12 AM
+-- Generation Time: Jul 10, 2024 at 01:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,8 +36,7 @@ CREATE TABLE `orders` (
   `product_id` int(11) NOT NULL,
   `quantity` int(10) NOT NULL,
   `price` varchar(255) NOT NULL,
-  'total' varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `total` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -50,21 +49,20 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
   `product_name` varchar(100) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
+  `price` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `image_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `price`, `description`, `image_url`, `created_at`) VALUES
-(1001, 'TechInvo Laptop V1', 1200.00, 'A high-performance laptop with a sleek design.', 'laptop1.jpg', '2024-07-07 08:32:59'),
-(1002, 'TechInvo Laptop V2', 1400.00, 'An upgraded version of the TechInvo Laptop V2 with enhanced features.', 'laptop2.jpg', '2024-07-07 08:32:59'),
-(1003, 'TechInvo Charger V1', 50.00, 'A reliable charger for TechInvo devices.', 'charger1.jpg', '2024-07-07 08:32:59'),
-(1004, 'TechInvo Charger V2', 60.00, 'An upgraded charger with fast charging capabilities.', 'charger2.jpg', '2024-07-07 08:32:59');
+INSERT INTO `products` (`product_id`, `product_name`, `price`, `description`, `image_url`) VALUES
+(1001, 'TechInvo Mac X', '1200.00', 'A high-performance laptop with a sleek design.', 'laptop1.jpg'),
+(1002, 'TechInvo Mini', '1400.00', 'An upgraded version of the TechInvo Laptop V2 with enhanced features.', 'laptop2.jpg'),
+(1003, 'TechInvo Phantom X', '299.99', 'The ultimate smartphone experience with a stunning display and powerful performance.', 'phone1.jpeg'),
+(1004, 'TechInvo Nova Plus', '249.99', 'A sleek and stylish phone with excellent battery life and a superb camera.', 'phone2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -80,6 +78,14 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`) VALUES
+(1, 'Antonio', 'antonio890@gmail.com', '$2y$10$vkJcCYtGLVuSVob0yEIotOzApXloqgAhDAb236T0C.waDCozNz0ni', '2024-07-07 09:20:50'),
+(2, 'Sandra Mwaniki', 'sandramw34@gmail.com', '$2y$10$7zyQJ3UC/NUBtcmvffT1p.sZBhz7qLVAK6Dftwizm/AXPx/tg5OOG', '2024-07-07 09:26:57');
 
 --
 -- Indexes for dumped tables
@@ -115,7 +121,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -127,7 +133,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
