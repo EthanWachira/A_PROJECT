@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php'; 
+require_once 'db.php'; /
 
 session_start();
 
@@ -12,6 +12,7 @@ $total = 0;
 $orderDetails = '';
 
 foreach ($_SESSION['cart'] as $productId) {
+  
     $sql = "SELECT * FROM products WHERE product_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $productId);
@@ -65,4 +66,3 @@ $conn->close();
 
 </body>
 </html>
-
