@@ -1,17 +1,21 @@
 <?php
+require_once 'db.php';
+
+$pageTitle = "Shop";
+include 'header.php';
+
 session_start();
-require_once 'db.php'; 
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = $_POST['product_id'];
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
-    }
-
     $_SESSION['cart'][] = $productId;
 
-    header('Location: shop.php');
+    header('Location: checkout.php');
     exit;
 }
 ?>
@@ -21,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title><?php echo $pageTitle; ?></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -58,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         ?>
     </div>
 </main>
+
+<?php include 'footer.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
