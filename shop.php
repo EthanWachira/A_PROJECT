@@ -12,11 +12,7 @@ if (!isset($_SESSION['cart'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = $_POST['product_id'];
-
     $_SESSION['cart'][] = $productId;
-
-    header('Location: checkout.php');
-    exit;
 }
 ?>
 
@@ -61,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         }
         ?>
     </div>
+    <a href="checkout.php" class="btn btn-success mt-3">Proceed to Checkout</a>
 </main>
 
 <?php include 'footer.php'; ?>

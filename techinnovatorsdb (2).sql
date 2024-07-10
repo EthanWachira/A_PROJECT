@@ -36,6 +36,7 @@ CREATE TABLE `orders` (
   `product_id` int(11) NOT NULL,
   `quantity` int(10) NOT NULL,
   `price` varchar(255) NOT NULL,
+  'total' varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
